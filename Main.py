@@ -1,7 +1,5 @@
-
 from tkinter import *
 import pytube
-
 
 
 def downloadVideo():
@@ -13,10 +11,9 @@ def downloadVideo():
         video.download('videos')
         notif.config(fg="green", text="Video Download Started")
     except Exception as e:
-        print(e)
-        notif.config(fg="red", text="Video could not be downloaded")
-        
-        
+        e = str('Download Failed:', e)
+        notif.config(fg="red", text=(e))
+
 
 def downloadAudio():
     video_url = url.get()
@@ -24,15 +21,15 @@ def downloadAudio():
         youtube = pytube.YouTube(video_url)
         audio = youtube.streams.get_audio_only()
         audio.download('songs')
-        notif.config(fg='green',text= 'audio download started...)
+        notif.config(fg='green', text='audio download started...')
     except Exception as e:
-        
-        notif.config(fg="red", text="Audio could not  downloaded: ", e)
+        e = str('Download Failed:',e)
+        notif.config(fg="red", text=(e))
 
 def downloadBoth():
-  downloadAudio()
-  downloadVideo()
-
+    downloadAudio()
+    downloadVideo()
+    notif.config(fg='green', text='audio & video downloads have started...')
 
 
 # Main Screen
@@ -52,9 +49,11 @@ Entry(master, width=50, textvariable=url).grid(sticky=N, row=2)
 
 # Buttons
 
-Button(master, width=20, text="Download Audio", font=("Calibri", 12), command=downloadAudio).grid(sticky=N, row=3, pady=0)
-Button(master, width=20, text="Download Video", font=("Calibri", 12), command=downloadVideo).grid(sticky=N, row=3, pady=45)
-Button(master, width=20, text="Download audio & video", font=("Calibri", 12), command=downloadBoth).grid(sticky=N, row=3, pady=90)
-
+Button(master, width=20, text="Download Audio", font=("Calibri", 12), command=downloadAudio).grid(sticky=N, row=3,
+                                                                                                  pady=0)
+Button(master, width=20, text="Download Video", font=("Calibri", 12), command=downloadVideo).grid(sticky=N, row=3,
+                                                                                                  pady=45)
+Button(master, width=20, text="Download audio & video", font=("Calibri", 12), command=downloadBoth).grid(sticky=N,
+                                                                                                         row=3, pady=90)
 
 master.mainloop()
