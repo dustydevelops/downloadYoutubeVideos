@@ -35,17 +35,21 @@ def downloadBoth():
 # Main Screen
 master = Tk()
 master.title("Youtube Video Downloader")
+master.geometry('420x420')
 
+master.config(bg = 'black')
+
+#Create a transparent window
 # Labels
-Label(master, text="Youtube Video Converter", fg="red", font=("Calibri", 15)).grid(sticky=N, padx=100, row=0)
+Label(master, text="Youtube Video Converter", fg="red", font=("Calibri", 15)).grid(sticky=N, padx=15, row=0)
 Label(master, text="Please enter the link to your video below : ", font=("Calibri", 15)).grid(sticky=N, row=1, pady=15)
 notif = Label(master, font=("Calibri", 12))
 notif.grid(sticky=N, pady=1, row=4)
 
 # Vars
 url = StringVar()
-# Entry
-Entry(master, width=50, textvariable=url).grid(sticky=N, row=2)
+# Entr
+Entry(master, width=50, textvariable=url).grid(sticky=N, row=2,pady = 15)
 
 # Buttons
 
